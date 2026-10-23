@@ -1,54 +1,55 @@
 ---
 id: "SPEC-001"
-title: "Arkanoid Python Niveles Core Architecture and Implementation"
+title: "Arkanoid Python Niveles - Sprint 1: Setup de Entorno y Estructura Base"
 version: "1.0.0"
 status: "APPROVED"
 sprint_id: "sprint_01"
-created_at: "2026-10-23 14:00:08"
-updated_at: "2026-10-23 21:13:06"
-approved_by: "SDD-AutoGate"
+created_at: "2026-10-23 21:40:00"
+updated_at: "2026-10-23 21:40:00"
+approved_by: "SDD-Architect"
 ---
-# SPEC-001 — Arkanoid Python Niveles Core Architecture
+# SPEC-001 — Arkanoid Python Niveles: Setup de Entorno y Estructura Base
 
 ## 1. Context
-Inicialización y desarrollo del proyecto 'Arkanoid Python Niveles'.
-Requerimiento de usuario: "Arkanoid en Python con niveles procedurales infinitos (hasta morir), vidas, puntuación, power-ups (temporales y permanentes), estilo retro neón y un HUD visible"
+Inicio del desarrollo del videojuego 'Arkanoid Python Niveles' con generación procedural, vidas, puntuación, power-ups y HUD retro neón. Este Sprint 1 establece la estructura base del repositorio, dependencias y punto de entrada modular.
 
 ## 2. Goal
-Entregar la implementación funcional completa, testeable y modular del núcleo del sistema, respetando Clean Architecture y compatibilidad Multi-OS.
+Configurar el entorno de ejecución, dependencias (`requirements.txt` con `pygame`, `numpy`, `pytest`), módulos base en `src/` (`config.py`, `main.py`) y una suite de pruebas unitarias verificables en `tests/` (`test_basic.py`) que valide la inicialización limpia.
 
 ## 3. Users
-Usuario final / Desarrollador.
+Desarrolladores y jugadores del proyecto Arkanoid.
 
 ## 4. Scope
 ### In scope
-- Andamiaje y estructura de archivos base (`src/`, `tests/`).
-- Lógica central del dominio e interacción del usuario.
-- Pruebas unitarias automatizadas (TDD).
-- Auditoría de seguridad y mapa de arquitectura vivo.
+- Archivo de dependencias `requirements.txt` con `pygame>=2.5.0`, `numpy>=1.24.0`, `pytest>=7.0.0`.
+- Módulo `src/__init__.py` y `src/config.py` con constantes de resolución (800x600), colores retro neón (NEON_CYAN, NEON_PINK, etc.) y FPS (60).
+- Punto de entrada `src/main.py` con la función `init_game()` y bucle de juego seguro compatible con modo headless.
+- Suite de tests `tests/__init__.py` y `tests/test_basic.py` que verifique la configuración y la inicialización de Pygame con código de salida 0.
 
 ### Out of scope
-- Infraestructura de pago o monetización compleja inicial.
-- Microservicios distribuidos innecesarios.
+- Lógica de paddle, pelotas y colisiones complejas (reservado para Sprint 2 y 3).
+- Generación de niveles procedurales y power-ups (Sprints 4 y 5).
 
 ## 5. Requirements
-### R1: Arquitectura y Ejecución Local Autónoma
-- El proyecto debe ser completamente autónomo y ejecutable en local.
+### R1: Dependencias y Configuración del Proyecto
+- Definir `requirements.txt` con `pygame>=2.5.0`, `numpy>=1.24.0` y `pytest>=7.0.0`.
+- Implementar `src/config.py` con `SCREEN_WIDTH = 800`, `SCREEN_HEIGHT = 600`, `FPS = 60`, y la paleta de colores RGB `COLOR_BG = (10, 10, 25)`, `COLOR_NEON_CYAN = (0, 255, 240)`, `COLOR_NEON_PINK = (255, 0, 128)`.
 
-### R2: Cobertura de Pruebas Unitarias Verificables
-- Cada módulo debe tener cobertura de pruebas unitarias verificables.
+### R2: Módulo Principal y Punto de Entrada
+- Implementar `src/main.py` conteniendo la función `init_game() -> dict` que inicializa pygame de forma segura (respetando variables de entorno como `SDL_VIDEODRIVER`), configura la resolución y retorna el estado inicial `{"status": "initialized", "screen_size": (800, 600)}`.
 
-### R3: Calidad de Código y Estabilidad
-- El código debe pasar linters y pruebas sin errores de sintaxis ni cuelgues.
+### R3: Suite de Pruebas Unitarias Verificables
+- Implementar `tests/test_basic.py` conteniendo pruebas unitarias que validen:
+  1. Que las constantes de `src/config.py` tengan tipos y valores correctos.
+  2. Que `init_game()` de `src/main.py` inicialice sin excepciones y retorne `status == "initialized"`.
 
 ## 6. Business Rules
-- Las entradas del usuario deben validarse dentro de límites seguros.
-- Los estados del sistema deben transicionar de forma determinista y predecible.
+- La pantalla debe ser determinista (800x600, 60 FPS).
+- La inicialización de Pygame debe ejecutarse limpiamente tanto con pantalla física como en modo headless (`SDL_VIDEODRIVER=dummy`).
 
 ## 7. User Flow
-1. Inicialización y carga de dependencias.
-2. Renderizado de interfaz o ejecución de punto de entrada principal.
-3. Procesamiento continuo de eventos o comandos.
+1. El usuario o sistema ejecuta `python src/main.py` o corre `pytest tests/`.
+2. Pygame y la configuración cargan sin excepciones.
 
 ## 8. Acceptance Criteria
 ### Scenario 1: Inicialización correcta del entorno y componentes
@@ -62,8 +63,7 @@ When se procesa una interacción válida del usuario o entrada de datos
 Then el estado interno se actualiza correctamente respetando las reglas de negocio
 
 ## 9. Edge Cases
-- Manejo de entradas fuera de rango o inesperadas sin crashear.
-- Cierre ordenado de recursos al salir.
+- Ejecución en entornos CI/CD sin pantalla gráfica (garantizado con `SDL_VIDEODRIVER=dummy`).
 
 ## 10. Open Questions
-- Ninguna pregunta bloqueante. Spec formalmente aprobado para desarrollo SDD.
+- Todas las dudas resueltas. Spec formalmente aprobada para desarrollo SDD.

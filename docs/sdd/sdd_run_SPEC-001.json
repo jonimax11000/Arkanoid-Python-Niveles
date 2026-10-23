@@ -2,7 +2,7 @@
   "status": "BLOCKED_HITL",
   "spec_id": "SPEC-001",
   "project_root": "L:\\arkanoid-python-niveles",
-  "reason": "Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+  "reason": "Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
   "base_branch": "main",
   "qa_verdict": "FAIL",
   "consolidated_branch": null,
@@ -12,25 +12,81 @@
   "attempts": [
     {
       "attempt": 1,
-      "branch": "sprint/SPEC-001-attempt-1-run3",
+      "branch": "sprint/SPEC-001-attempt-1-run4",
       "subphases": [
         {
           "subphase_id": "SP-01",
-          "status": "FAILED",
-          "files_modified": [],
-          "summary": "",
-          "decisions": [],
-          "questions": [],
-          "errors": [
-            "'files' debe ser una lista no vacía."
+          "status": "SUCCESS",
+          "files_modified": [
+            "setup.py",
+            "Makefile",
+            "project/post_install.py"
           ],
-          "llm_calls": 3
+          "summary": "Implemented setup for local execution with setup.py and Makefile, including dependencies and scripts.",
+          "decisions": [
+            "Used virtual environment for dependency management",
+            "Included standard data packages"
+          ],
+          "questions": [
+            "Necessity of post-install script",
+            "Enhancing Makefile with more targets"
+          ],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-02",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_math_operations.py"
+          ],
+          "summary": "Implementación de pruebas unitarias para el módulo math_operations",
+          "decisions": [
+            "Usar pytest como framework de testing"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 2
+        },
+        {
+          "subphase_id": "SP-03",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_linter.py",
+            "config/linter.py"
+          ],
+          "summary": "Se implementaron pruebas para verificar la ausencia de errores de sintaxis y se configuró el linter para asegurar la calidad del código.",
+          "decisions": [
+            "Configurar el linter con herramientas estándar como black y flake8"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-04",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/main.py",
+            "src/services/initializer.py"
+          ],
+          "summary": "Se implementó la integración de los componentes, asegurando la inicialización correcta del entorno y la ejecución de la lógica de dominio con manejo de errores y logging.",
+          "decisions": [
+            "Uso de logging estándar para monitoreo",
+            "Incluir manejo de excepciones en la lógica principal"
+          ],
+          "questions": [
+            "¿Cuál es el orden correcto para inicializar los componentes?",
+            "¿Se requiere logging de debug o solo info/error?"
+          ],
+          "errors": [],
+          "llm_calls": 1
         }
       ],
-      "outcome": "DEV_FAILED",
-      "qa_verdict": null,
+      "outcome": "FAIL",
+      "qa_verdict": "FAIL",
       "rollback": {
-        "rama_preservada": "sprint/SPEC-001-attempt-1-run3",
+        "rama_preservada": "sprint/SPEC-001-attempt-1-run4",
         "rama_actual": "main",
         "snapshot_creado": false,
         "limpieza_forzada": false
@@ -38,25 +94,75 @@
     },
     {
       "attempt": 2,
-      "branch": "sprint/SPEC-001-attempt-2-run3",
+      "branch": "sprint/SPEC-001-attempt-2-run4",
       "subphases": [
         {
           "subphase_id": "SP-01",
-          "status": "FAILED",
-          "files_modified": [],
-          "summary": "",
-          "decisions": [],
-          "questions": [],
-          "errors": [
-            "'files' debe ser una lista no vacía."
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_linter.py",
+            "tests/test_math_operations.py"
           ],
-          "llm_calls": 3
+          "summary": "Corregí los imports en los archivos de prueba para asegurar que se importen correctamente los módulos desde src. Esto debería resolver los errores de importación que impedían que los tests se ejecuten correctamente.",
+          "decisions": [
+            "Usar importaciones absolutas en los archivos de prueba para garantizar que se resuelvan correctamente"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-02",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_linter.py",
+            "tests/test_math_operations.py"
+          ],
+          "summary": "Corregí los archivos de prueba para eliminar los errores de sintaxis y asegurar que los imports sean absolutos.",
+          "decisions": [
+            "Usar imports absolutos en los archivos de prueba"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 2
+        },
+        {
+          "subphase_id": "SP-03",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_linter.py",
+            "tests/test_math_operations.py"
+          ],
+          "summary": "Fixed test files by correcting imports and defining variables.",
+          "decisions": [
+            "Used absolute imports in test files",
+            "Ensured all variables are properly defined"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-04",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_linter.py",
+            "tests/test_math_operations.py"
+          ],
+          "summary": "Fixed test files by correcting imports and ensuring proper test setup.",
+          "decisions": [
+            "Switched to absolute imports in test files",
+            "Restructured test setup for correct module access"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
         }
       ],
-      "outcome": "DEV_FAILED",
-      "qa_verdict": null,
+      "outcome": "FAIL",
+      "qa_verdict": "FAIL",
       "rollback": {
-        "rama_preservada": "sprint/SPEC-001-attempt-2-run3",
+        "rama_preservada": "sprint/SPEC-001-attempt-2-run4",
         "rama_actual": "main",
         "snapshot_creado": false,
         "limpieza_forzada": false
@@ -64,20 +170,20 @@
     }
   ],
   "preserved_branches": [
-    "sprint/SPEC-001-attempt-1-run3",
-    "sprint/SPEC-001-attempt-2-run3"
+    "sprint/SPEC-001-attempt-1-run4",
+    "sprint/SPEC-001-attempt-2-run4"
   ],
-  "timestamp": "2026-10-23 20:45:40",
+  "timestamp": "2026-10-23 21:24:58",
   "post_mortem_report": {
     "spec_id": "SPEC-001",
-    "timestamp": "2026-10-23 20:45:40",
+    "timestamp": "2026-10-23 21:24:58",
     "project_root": "L:\\arkanoid-python-niveles",
     "primary_root_cause": "SPEC_DESIGN_DEFECT",
     "confidence": 0.88,
     "summary": "Discrepancia funcional entre la implementación y los requisitos de la SPEC; el diseño omite o contradice el comportamiento esperado.",
     "incident_details": [
-      "Motivo reportado por el Sprint: Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
-      "Errores reportados en DEV: 'files' debe ser una lista no vacía.; 'files' debe ser una lista no vacía."
+      "Motivo reportado por el Sprint: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+      "Errores reportados en DEV: Duda: Necessity of post-install script; Duda: Enhancing Makefile with more targets; Duda: ¿Cuál es el orden correcto para inicializar los componentes?"
     ],
     "forensic_evidence": {
       "pruned_traceback": "",
@@ -85,18 +191,18 @@
       "hardware_snapshot": {
         "gpu_name": "NVIDIA GeForce RTX 4070",
         "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 1918.0,
-        "gpu_vram_free_mb": 10093.0,
-        "vram_used_ratio": 0.156,
-        "gpu_temp_c": 42.0,
-        "gpu_utilization_percent": 21.0,
+        "gpu_vram_used_mb": 1626.0,
+        "gpu_vram_free_mb": 10385.0,
+        "vram_used_ratio": 0.132,
+        "gpu_temp_c": 49.0,
+        "gpu_utilization_percent": 12.0,
         "ram_total_mb": 32509.4,
-        "ram_used_mb": 10238.0,
-        "ram_free_mb": 22271.4,
-        "ram_percent": 31.5,
+        "ram_used_mb": 13166.4,
+        "ram_free_mb": 19343.0,
+        "ram_percent": 40.5,
         "cpu_percent": 0.0,
         "cpu_cores": 24,
-        "timestamp": "2026-10-23 20:45:40"
+        "timestamp": "2026-10-23 21:24:58"
       }
     },
     "spec_patches": [
@@ -104,20 +210,20 @@
         "section": "5. Requisitos Funcionales",
         "action": "MODIFY",
         "target_item": "Corrección de Lógica de Negocio",
-        "proposed_text": "### Enmienda de Requisito Funcional\n- Modificar la lógica para satisfacer la expectativa de QA: Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.\n- Asegurar consistencia entre las entradas de prueba y las salidas esperadas.",
+        "proposed_text": "### Enmienda de Requisito Funcional\n- Modificar la lógica para satisfacer la expectativa de QA: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.\n- Asegurar consistencia entre las entradas de prueba y las salidas esperadas.",
         "rationale": "Discrepancia funcional detectada durante la verificación de QA."
       },
       {
         "section": "8. Criterios de Aceptación",
         "action": "MODIFY",
         "target_item": "Alineación de Criterio de Verificación",
-        "proposed_text": "- El veredicto de QA debe requerir paso al 100% de las aserciones de negocio.\n- Validar específicamente el caso reportado: Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+        "proposed_text": "- El veredicto de QA debe requerir paso al 100% de las aserciones de negocio.\n- Validar específicamente el caso reportado: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
         "rationale": "Alinear el criterio de aceptación con la solución del defecto de diseño."
       }
     ],
     "lessons_learned": [
       "[SPEC_DESIGN_DEFECT] Discrepancia funcional entre la implementación y los requisitos de la SPEC; el diseño omite o contradice el comportamiento esperado.",
-      "Patrón a evitar: Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA,",
+      "Patrón a evitar: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y ref",
       "Acción preventiva: Se generaron 2 parches sugeridos a la SPEC para blindar futuras iteraciones."
     ],
     "hardware_directive": {
@@ -127,23 +233,23 @@
       "metrics_snapshot": {
         "gpu_name": "NVIDIA GeForce RTX 4070",
         "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 1918.0,
-        "gpu_vram_free_mb": 10093.0,
-        "vram_used_ratio": 0.156,
-        "gpu_temp_c": 42.0,
-        "gpu_utilization_percent": 21.0,
+        "gpu_vram_used_mb": 1626.0,
+        "gpu_vram_free_mb": 10385.0,
+        "vram_used_ratio": 0.132,
+        "gpu_temp_c": 49.0,
+        "gpu_utilization_percent": 12.0,
         "ram_total_mb": 32509.4,
-        "ram_used_mb": 10238.0,
-        "ram_free_mb": 22271.4,
-        "ram_percent": 31.5,
+        "ram_used_mb": 13166.4,
+        "ram_free_mb": 19343.0,
+        "ram_percent": 40.5,
         "cpu_percent": 0.0,
         "cpu_cores": 24,
-        "timestamp": "2026-10-23 20:45:40"
+        "timestamp": "2026-10-23 21:24:58"
       }
     },
     "saved_paths": {
-      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261023_204541.json",
-      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261023_204541.md"
+      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261023_212458.json",
+      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261023_212458.md"
     }
   },
   "success": false
