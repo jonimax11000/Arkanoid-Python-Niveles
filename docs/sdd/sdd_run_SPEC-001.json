@@ -12,7 +12,7 @@
   "attempts": [
     {
       "attempt": 1,
-      "branch": "sprint/SPEC-001-attempt-1-run2",
+      "branch": "sprint/SPEC-001-attempt-1-run3",
       "subphases": [
         {
           "subphase_id": "SP-01",
@@ -30,7 +30,7 @@
       "outcome": "DEV_FAILED",
       "qa_verdict": null,
       "rollback": {
-        "rama_preservada": "sprint/SPEC-001-attempt-1-run2",
+        "rama_preservada": "sprint/SPEC-001-attempt-1-run3",
         "rama_actual": "main",
         "snapshot_creado": false,
         "limpieza_forzada": false
@@ -38,7 +38,7 @@
     },
     {
       "attempt": 2,
-      "branch": "sprint/SPEC-001-attempt-2-run2",
+      "branch": "sprint/SPEC-001-attempt-2-run3",
       "subphases": [
         {
           "subphase_id": "SP-01",
@@ -56,7 +56,7 @@
       "outcome": "DEV_FAILED",
       "qa_verdict": null,
       "rollback": {
-        "rama_preservada": "sprint/SPEC-001-attempt-2-run2",
+        "rama_preservada": "sprint/SPEC-001-attempt-2-run3",
         "rama_actual": "main",
         "snapshot_creado": false,
         "limpieza_forzada": false
@@ -64,13 +64,13 @@
     }
   ],
   "preserved_branches": [
-    "sprint/SPEC-001-attempt-1-run2",
-    "sprint/SPEC-001-attempt-2-run2"
+    "sprint/SPEC-001-attempt-1-run3",
+    "sprint/SPEC-001-attempt-2-run3"
   ],
-  "timestamp": "2026-10-23 18:51:27",
+  "timestamp": "2026-10-23 20:45:40",
   "post_mortem_report": {
     "spec_id": "SPEC-001",
-    "timestamp": "2026-10-23 18:51:27",
+    "timestamp": "2026-10-23 20:45:40",
     "project_root": "L:\\arkanoid-python-niveles",
     "primary_root_cause": "SPEC_DESIGN_DEFECT",
     "confidence": 0.88,
@@ -85,18 +85,18 @@
       "hardware_snapshot": {
         "gpu_name": "NVIDIA GeForce RTX 4070",
         "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 1863.0,
-        "gpu_vram_free_mb": 10148.0,
-        "vram_used_ratio": 0.152,
-        "gpu_temp_c": 48.0,
-        "gpu_utilization_percent": 41.0,
+        "gpu_vram_used_mb": 1918.0,
+        "gpu_vram_free_mb": 10093.0,
+        "vram_used_ratio": 0.156,
+        "gpu_temp_c": 42.0,
+        "gpu_utilization_percent": 21.0,
         "ram_total_mb": 32509.4,
-        "ram_used_mb": 17171.8,
-        "ram_free_mb": 15337.6,
-        "ram_percent": 52.8,
+        "ram_used_mb": 10238.0,
+        "ram_free_mb": 22271.4,
+        "ram_percent": 31.5,
         "cpu_percent": 0.0,
         "cpu_cores": 24,
-        "timestamp": "2026-10-23 18:51:27"
+        "timestamp": "2026-10-23 20:45:40"
       }
     },
     "spec_patches": [
@@ -127,23 +127,23 @@
       "metrics_snapshot": {
         "gpu_name": "NVIDIA GeForce RTX 4070",
         "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 1863.0,
-        "gpu_vram_free_mb": 10148.0,
-        "vram_used_ratio": 0.152,
-        "gpu_temp_c": 48.0,
-        "gpu_utilization_percent": 41.0,
+        "gpu_vram_used_mb": 1918.0,
+        "gpu_vram_free_mb": 10093.0,
+        "vram_used_ratio": 0.156,
+        "gpu_temp_c": 42.0,
+        "gpu_utilization_percent": 21.0,
         "ram_total_mb": 32509.4,
-        "ram_used_mb": 17171.8,
-        "ram_free_mb": 15337.6,
-        "ram_percent": 52.8,
+        "ram_used_mb": 10238.0,
+        "ram_free_mb": 22271.4,
+        "ram_percent": 31.5,
         "cpu_percent": 0.0,
         "cpu_cores": 24,
-        "timestamp": "2026-10-23 18:51:27"
+        "timestamp": "2026-10-23 20:45:40"
       }
     },
     "saved_paths": {
-      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261023_185127.json",
-      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261023_185127.md"
+      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261023_204541.json",
+      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261023_204541.md"
     }
   },
   "success": false
