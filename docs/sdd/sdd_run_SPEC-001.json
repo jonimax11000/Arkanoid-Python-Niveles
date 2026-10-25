@@ -2,7 +2,7 @@
   "status": "BLOCKED_HITL",
   "spec_id": "SPEC-001",
   "project_root": "L:\\arkanoid-python-niveles",
-  "reason": "Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+  "reason": "Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
   "base_branch": "main",
   "qa_verdict": "FAIL",
   "consolidated_branch": null,
@@ -12,7 +12,7 @@
   "attempts": [
     {
       "attempt": 1,
-      "branch": "sprint/SPEC-001-attempt-1-run6",
+      "branch": "sprint/SPEC-001-attempt-1-run7",
       "subphases": [
         {
           "subphase_id": "SP-01",
@@ -21,7 +21,49 @@
             "requirements.txt",
             "src/config.py"
           ],
-          "summary": "Se implementó el archivo requirements.txt con las dependencias especificadas y se creó src/config.py con las constantes de configuración y colores definidos en la SPEC.",
+          "summary": "Se implementaron los archivos requirements.txt y src/config.py con los requisitos especificados.",
+          "decisions": [
+            "Usar valores estándar de RGB para los colores",
+            "Usar resolución 800x600 para la pantalla"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-02",
+          "status": "FAILED",
+          "files_modified": [],
+          "summary": "",
+          "decisions": [],
+          "questions": [],
+          "errors": [
+            "La respuesta no es un JSON válido con el formato requerido."
+          ],
+          "llm_calls": 3
+        }
+      ],
+      "outcome": "DEV_FAILED",
+      "qa_verdict": null,
+      "rollback": {
+        "rama_preservada": "sprint/SPEC-001-attempt-1-run7",
+        "rama_actual": "main",
+        "snapshot_creado": false,
+        "limpieza_forzada": false
+      }
+    },
+    {
+      "attempt": 2,
+      "branch": "sprint/SPEC-001-attempt-2-run7",
+      "subphases": [
+        {
+          "subphase_id": "SP-01",
+          "status": "SUCCESS",
+          "files_modified": [
+            "requirements.txt",
+            "src/config.py"
+          ],
+          "summary": "Se implementaron los archivos requirements.txt y src/config.py según los requisitos especificados.",
           "decisions": [],
           "questions": [],
           "errors": [],
@@ -33,125 +75,29 @@
           "files_modified": [
             "src/main.py"
           ],
-          "summary": "Implementación de la función init_game() que inicializa pygame respetando variables de entorno y configura la resolución.",
-          "decisions": [
-            "Decidí no manejar errores explícitamente ya que el contrato no lo especifica.",
-            "Usé pygame.display.set_driver() para manejar SDL_VIDEODRIVER."
-          ],
-          "questions": [],
-          "errors": [],
-          "llm_calls": 1
-        },
-        {
-          "subphase_id": "SP-03",
-          "status": "SUCCESS",
-          "files_modified": [
-            "tests/test_basic.py"
-          ],
-          "summary": "Se implementaron pruebas unitarias en tests/test_basic.py para verificar las constantes de config.py y la inicialización de init_game()",
-          "decisions": [
-            "Usar pytest para las pruebas",
-            "Utilizar importaciones absolutas"
-          ],
-          "questions": [
-            "¿Deberíamos manejar diferentes tamaños de pantalla en las pruebas?"
-          ],
-          "errors": [],
-          "llm_calls": 1
-        },
-        {
-          "subphase_id": "SP-04",
-          "status": "SUCCESS",
-          "files_modified": [
-            "src/main.py",
-            "src/services/limits.py"
-          ],
-          "summary": "Se implementó la integración de componentes principales, incluyendo la inicialización correcta del entorno y la ejecución de la lógica de dominio. Se aseguró que los límites se validen correctamente antes de ser actualizados.",
-          "decisions": [
-            "Usar importaciones relativas en los archivos de servicio para mantener la modularidad"
-          ],
-          "questions": [
-            "¿Debería el servicio de límites admitir operaciones além de incrementar?"
-          ],
-          "errors": [],
-          "llm_calls": 1
-        }
-      ],
-      "outcome": "FAIL",
-      "qa_verdict": "FAIL",
-      "rollback": {
-        "rama_preservada": "sprint/SPEC-001-attempt-1-run6",
-        "rama_actual": "main",
-        "snapshot_creado": false,
-        "limpieza_forzada": false
-      }
-    },
-    {
-      "attempt": 2,
-      "branch": "sprint/SPEC-001-attempt-2-run6",
-      "subphases": [
-        {
-          "subphase_id": "SP-01",
-          "status": "SUCCESS",
-          "files_modified": [
-            "requirements.txt",
-            "src/config.py"
-          ],
-          "summary": "Se implementaron los archivos requirements.txt y src/config.py con las especificaciones dadas.",
-          "decisions": [
-            "Se eliminó el 'from __future__ import annotations' en config.py para evitar posibles conflictos con la suite de pruebas."
-          ],
-          "questions": [],
-          "errors": [],
-          "llm_calls": 1
-        },
-        {
-          "subphase_id": "SP-02",
-          "status": "SUCCESS",
-          "files_modified": [
-            "src/main.py"
-          ],
-          "summary": "Se implementó la función init_game() que inicializa pygame con las configuraciones específicas y retorna el estado inicial.",
-          "decisions": [
-            " Manejar excepciones específicas para drivers de video no soportados"
-          ],
-          "questions": [],
-          "errors": [],
-          "llm_calls": 2
-        },
-        {
-          "subphase_id": "SP-03",
-          "status": "SUCCESS",
-          "files_modified": [
-            "tests/test_basic.py"
-          ],
-          "summary": "Se implementaron pruebas unitarias para verificar las constantes de config.py y la inicialización de init_game()",
-          "decisions": [
-            "Importar todas las constantes necesarias de config.py al test_basic.py"
-          ],
+          "summary": "Se implementó la función init_game() que inicia pygame, configura la pantalla con tamaño 800x600 y retorna el estado inicializado con el tamaño de la pantalla.",
+          "decisions": [],
           "questions": [],
           "errors": [],
           "llm_calls": 3
         },
         {
-          "subphase_id": "SP-04",
-          "status": "SUCCESS",
-          "files_modified": [
-            "src/config.py"
-          ],
-          "summary": "Corregí los imports en config.py para usar paths absolutos, resolviendo los errores en los tests.",
-          "decisions": [
-            "Cambiar todos los imports relativos a absolutos en config.py"
-          ],
+          "subphase_id": "SP-03",
+          "status": "FAILED",
+          "files_modified": [],
+          "summary": "",
+          "decisions": [],
           "questions": [],
-          "errors": [],
-          "llm_calls": 1
+          "errors": [
+            "Símbolos no definidos ni importados en 'tests/test_basic.py': COLOR_NEON_PINK, COLOR_NEON_CYAN, FPS, SCREEN_WIDTH, SCREEN_HEIGHT. Debes importarlos o definirlos explícitamente."
+          ],
+          "llm_calls": 3
         }
       ],
-      "outcome": "FAIL",
-      "qa_verdict": "FAIL",
+      "outcome": "DEV_FAILED",
+      "qa_verdict": null,
       "rollback": {
-        "rama_preservada": "sprint/SPEC-001-attempt-2-run6",
+        "rama_preservada": "sprint/SPEC-001-attempt-2-run7",
         "rama_actual": "main",
         "snapshot_creado": false,
         "limpieza_forzada": false
@@ -159,20 +105,20 @@
     }
   ],
   "preserved_branches": [
-    "sprint/SPEC-001-attempt-1-run6",
-    "sprint/SPEC-001-attempt-2-run6"
+    "sprint/SPEC-001-attempt-1-run7",
+    "sprint/SPEC-001-attempt-2-run7"
   ],
-  "timestamp": "2026-10-25 18:55:26",
+  "timestamp": "2026-10-25 20:52:02",
   "post_mortem_report": {
     "spec_id": "SPEC-001",
-    "timestamp": "2026-10-25 18:55:26",
+    "timestamp": "2026-10-25 20:52:02",
     "project_root": "L:\\arkanoid-python-niveles",
     "primary_root_cause": "SPEC_DESIGN_DEFECT",
     "confidence": 0.88,
     "summary": "Discrepancia funcional entre la implementación y los requisitos de la SPEC; el diseño omite o contradice el comportamiento esperado.",
     "incident_details": [
-      "Motivo reportado por el Sprint: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
-      "Errores reportados en DEV: Duda: ¿Deberíamos manejar diferentes tamaños de pantalla en las pruebas?; Duda: ¿Debería el servicio de límites admitir operaciones além de incrementar?"
+      "Motivo reportado por el Sprint: Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+      "Errores reportados en DEV: La respuesta no es un JSON válido con el formato requerido.; Símbolos no definidos ni importados en 'tests/test_basic.py': COLOR_NEON_PINK, COLOR_NEON_CYAN, FPS, SCREEN_WIDTH, SCREEN_HEIGHT. Debes importarlos o definirlos explícitamente."
     ],
     "forensic_evidence": {
       "pruned_traceback": "",
@@ -180,18 +126,18 @@
       "hardware_snapshot": {
         "gpu_name": "NVIDIA GeForce RTX 4070",
         "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 1406.0,
-        "gpu_vram_free_mb": 10605.0,
-        "vram_used_ratio": 0.114,
-        "gpu_temp_c": 51.0,
-        "gpu_utilization_percent": 2.0,
+        "gpu_vram_used_mb": 876.0,
+        "gpu_vram_free_mb": 11135.0,
+        "vram_used_ratio": 0.071,
+        "gpu_temp_c": 57.0,
+        "gpu_utilization_percent": 53.0,
         "ram_total_mb": 32509.4,
-        "ram_used_mb": 17327.5,
-        "ram_free_mb": 15181.9,
-        "ram_percent": 53.3,
+        "ram_used_mb": 12459.5,
+        "ram_free_mb": 20049.9,
+        "ram_percent": 38.3,
         "cpu_percent": 0.0,
         "cpu_cores": 24,
-        "timestamp": "2026-10-25 18:55:26"
+        "timestamp": "2026-10-25 20:52:02"
       }
     },
     "spec_patches": [
@@ -199,20 +145,20 @@
         "section": "5. Requisitos Funcionales",
         "action": "MODIFY",
         "target_item": "Corrección de Lógica de Negocio",
-        "proposed_text": "### Enmienda de Requisito Funcional\n- Modificar la lógica para satisfacer la expectativa de QA: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.\n- Asegurar consistencia entre las entradas de prueba y las salidas esperadas.",
+        "proposed_text": "### Enmienda de Requisito Funcional\n- Modificar la lógica para satisfacer la expectativa de QA: Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.\n- Asegurar consistencia entre las entradas de prueba y las salidas esperadas.",
         "rationale": "Discrepancia funcional detectada durante la verificación de QA."
       },
       {
         "section": "8. Criterios de Aceptación",
         "action": "MODIFY",
         "target_item": "Alineación de Criterio de Verificación",
-        "proposed_text": "- El veredicto de QA debe requerir paso al 100% de las aserciones de negocio.\n- Validar específicamente el caso reportado: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+        "proposed_text": "- El veredicto de QA debe requerir paso al 100% de las aserciones de negocio.\n- Validar específicamente el caso reportado: Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
         "rationale": "Alinear el criterio de aceptación con la solución del defecto de diseño."
       }
     ],
     "lessons_learned": [
       "[SPEC_DESIGN_DEFECT] Discrepancia funcional entre la implementación y los requisitos de la SPEC; el diseño omite o contradice el comportamiento esperado.",
-      "Patrón a evitar: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y ref",
+      "Patrón a evitar: Se agotaron los 2 intentos sin QA PASS (último resultado: DEV_FAILED). Revisa las ramas preservadas y el feedback de QA,",
       "Acción preventiva: Se generaron 2 parches sugeridos a la SPEC para blindar futuras iteraciones."
     ],
     "hardware_directive": {
@@ -222,23 +168,23 @@
       "metrics_snapshot": {
         "gpu_name": "NVIDIA GeForce RTX 4070",
         "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 1406.0,
-        "gpu_vram_free_mb": 10605.0,
-        "vram_used_ratio": 0.114,
-        "gpu_temp_c": 51.0,
-        "gpu_utilization_percent": 2.0,
+        "gpu_vram_used_mb": 876.0,
+        "gpu_vram_free_mb": 11135.0,
+        "vram_used_ratio": 0.071,
+        "gpu_temp_c": 57.0,
+        "gpu_utilization_percent": 53.0,
         "ram_total_mb": 32509.4,
-        "ram_used_mb": 17327.5,
-        "ram_free_mb": 15181.9,
-        "ram_percent": 53.3,
+        "ram_used_mb": 12459.5,
+        "ram_free_mb": 20049.9,
+        "ram_percent": 38.3,
         "cpu_percent": 0.0,
         "cpu_cores": 24,
-        "timestamp": "2026-10-25 18:55:26"
+        "timestamp": "2026-10-25 20:52:02"
       }
     },
     "saved_paths": {
-      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261025_185526.json",
-      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261025_185526.md"
+      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261025_205202.json",
+      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261025_205202.md"
     }
   },
   "success": false

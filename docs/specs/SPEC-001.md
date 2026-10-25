@@ -5,7 +5,7 @@ version: "1.0.0"
 status: "APPROVED"
 sprint_id: "sprint_01"
 created_at: "2026-10-23 21:40:00"
-updated_at: "2026-10-25 20:44:51"
+updated_at: "2026-10-25 22:14:21"
 approved_by: "SDD-Architect"
 ---
 # SPEC-001 — Arkanoid Python Niveles: Setup de Entorno y Estructura Base
