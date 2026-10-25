@@ -53,14 +53,16 @@ Desarrolladores y jugadores del proyecto Arkanoid.
 
 ## 8. Acceptance Criteria
 ### Scenario 1: Inicialización correcta del entorno y componentes
+@R2 @R3
 Given el proyecto ha sido configurado en `L:/arkanoid-python-niveles`
 When se ejecutan los tests unitarios o el punto de entrada
 Then el sistema inicializa sin excepciones y con código de salida 0
 
-### Scenario 2: Ejecución de lógica de dominio y verificación de límites
-Given los componentes principales están instanciados
-When se procesa una interacción válida del usuario o entrada de datos
-Then el estado interno se actualiza correctamente respetando las reglas de negocio
+### Scenario 2: Verificación de configuración y paleta retro neón
+@R1
+Given el módulo de configuración `src/config.py` está definido
+When se verifican las dimensiones y la paleta de colores
+Then las constantes SCREEN_WIDTH, SCREEN_HEIGHT, FPS y los colores neón son válidos
 
 ## 9. Edge Cases
 - Ejecución en entornos CI/CD sin pantalla gráfica (garantizado con `SDL_VIDEODRIVER=dummy`).
