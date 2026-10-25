@@ -1,0 +1,197 @@
+{
+  "status": "SUCCESS",
+  "spec_id": "SPEC-002",
+  "project_root": "L:\\arkanoid-python-niveles\\src",
+  "reason": "Sprint consolidado en main tras QA PASS.",
+  "base_branch": "main",
+  "qa_verdict": "PASS",
+  "consolidated_branch": "sprint/SPEC-002-attempt-2",
+  "consolidated_commit": "170061deeba69baa265624e267439d4adc638dac",
+  "archived_spec": "L:\\arkanoid-python-niveles\\src\\docs\\specs\\archive\\SPEC-002.md",
+  "total_subphases": 5,
+  "attempts": [
+    {
+      "attempt": 1,
+      "branch": "sprint/SPEC-002-attempt-1",
+      "subphases": [
+        {
+          "subphase_id": "SP-01",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game.py"
+          ],
+          "summary": "Implementación de la clase principal del juego con inicialización de estado, bucle principal, manejo de eventos y actualización de puntuación.",
+          "decisions": [
+            "Uso de un bucle while para el ciclo principal del juego",
+            "Manejo de eventos simulados para colisiones y entrada del usuario",
+            "Método render como placeholder para lógica de renderizado"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-02",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game_loop.py"
+          ],
+          "summary": "Implementación del ciclo de ejecución del juego que procesa eventos, actualiza el estado y verifica condiciones de finalización (puntuación máxima o pérdida de vidas).",
+          "decisions": [
+            "Uso de un enfoque orientado a objetos con una clase GameLoop para encapsular la lógica del ciclo"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-03",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/score_manager.py"
+          ],
+          "summary": "Implementaci\\u00f3n de un gestor de puntuaci\\u00f3n con funcionalidades para incrementar, obtener y restablecer la puntuaci\\u00f3n del jugador",
+          "decisions": [
+            "Uso de encapsulamiento con atributo privado _score",
+            "Validaci\\u00f3n de entrada en add_points",
+            "Implementaci\\u00f3n de property para acceso seguro a la puntuaci\\u00f3n"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-04",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/unit/test_game.py"
+          ],
+          "summary": "Implementación de pruebas unitarias para validar el comportamiento del core del juego, incluyendo inicialización, bucle principal y sistema de puntuación.",
+          "decisions": [
+            "Uso de unittest como framework de pruebas",
+            "Estructura de pruebas basada en escenarios clave de la SPEC"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-05",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game.py",
+            "src/main.py"
+          ],
+          "summary": "Implementado validaciones para evitar estados inválidos: 1) Validación de puntuación no negativa en la clase Game 2) Manejo de excepciones en el bucle principal con captura de KeyboardInterrupt y errores generales",
+          "decisions": [
+            "Uso de decoradores @property para encapsular la lógica de validación",
+            "Implementación de manejo de excepciones específicas (KeyboardInterrupt) y generales en el bucle principal"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        }
+      ],
+      "outcome": "FAIL",
+      "qa_verdict": "FAIL",
+      "rollback": {
+        "rama_preservada": "sprint/SPEC-002-attempt-1",
+        "rama_actual": "main",
+        "snapshot_creado": false,
+        "limpieza_forzada": false
+      }
+    },
+    {
+      "attempt": 2,
+      "branch": "sprint/SPEC-002-attempt-2",
+      "subphases": [
+        {
+          "subphase_id": "SP-01",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game.py"
+          ],
+          "summary": "Implementación de la clase Game con inicialización de atributos, bucle principal, manejo de eventos y sistema de puntuación. Se han añadido métodos para manejar colisiones y actualizar la puntuación.",
+          "decisions": [
+            "Se han inicializado atributos como score, game_objects y running en __init__",
+            "Se ha implementado un bucle principal que maneja eventos y actualiza el estado del juego",
+            "Se ha añadido un método para incrementar la puntuación al manejar colisiones"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-02",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/entities/player.py"
+          ],
+          "summary": "Implementación del componente Player con atributo score y método handle_event para manejar eventos de puntuación. Se ha corregido la falta de definición del Player en src/game.py.",
+          "decisions": [
+            "Se ha creado un archivo separado para Player en src/entities/player.py",
+            "Se ha implementado el sistema de puntuación básico en el Player"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 3
+        },
+        {
+          "subphase_id": "SP-03",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game.py"
+          ],
+          "summary": "Implementación del sistema de puntuación con atributo 'score', método para incrementar puntuación y manejo de eventos básicos. Se asegura que los tests puedan acceder a 'score' y validar su comportamiento.",
+          "decisions": [
+            "Se implementó un sistema de puntuación básico con incremento por evento de teclado (espacio)",
+            "Se añadió atributo 'score' accesible públicamente para tests"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-04",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game.py"
+          ],
+          "summary": "Implementación de atributos y métodos necesarios para pasar las pruebas unitarias: inicialización de score y running, manejo de eventos en el bucle principal y actualización de puntuación.",
+          "decisions": [
+            "Inicialización explícita de atributos 'score' y 'running' en __init__",
+            "Implementación de método handle_event para manejo de eventos en el bucle principal",
+            "Creación de método update_score para modificar la puntuación"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-05",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game.py"
+          ],
+          "summary": "Implementación de validaciones para evitar estados inválidos: validación de puntuación no negativa, manejo de excepciones en el bucle principal, y corrección de importaciones faltantes de pygame.",
+          "decisions": [
+            "Uso de try-except en el bucle principal para manejar excepciones",
+            "Validación explícita de puntuación negativa en update_score"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 2
+        }
+      ],
+      "outcome": "PASS",
+      "qa_verdict": "PASS",
+      "rollback": null
+    }
+  ],
+  "preserved_branches": [
+    "sprint/SPEC-002-attempt-1"
+  ],
+  "timestamp": "2026-10-25 22:45:12",
+  "post_mortem_report": null,
+  "success": true
+}
