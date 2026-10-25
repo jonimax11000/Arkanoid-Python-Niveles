@@ -1,0 +1,68 @@
+{
+  "spec_id": "SPEC-001",
+  "timestamp": "2026-10-25 22:21:07",
+  "project_root": "L:\\arkanoid-python-niveles",
+  "primary_root_cause": "HARDWARE_CHOKING",
+  "confidence": 0.95,
+  "summary": "Saturación física de hardware detectada durante el sprint: VRAM de GPU 'NVIDIA GeForce RTX 4070' al 95.5% (Usados: 11725/12282 MB). Riesgo inminente de OOM.",
+  "incident_details": [
+    "Motivo reportado por el Sprint: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+    "Errores reportados en DEV: Duda: ¿Se requiere manejo adicional de excepciones durante la inicialización?; Duda: ¿Qué comportamiento se espera cuando se superan múltiples límites simultáneamente?; Duda: Los errores en tests/test_basic.py y tests/test_integration.py persisten, ¿son causados por la implementación actual o por configuraciones externas?"
+  ],
+  "forensic_evidence": {
+    "pruned_traceback": "",
+    "pruned_diff": "",
+    "hardware_snapshot": {
+      "gpu_name": "NVIDIA GeForce RTX 4070",
+      "gpu_vram_total_mb": 12282.0,
+      "gpu_vram_used_mb": 11725.0,
+      "gpu_vram_free_mb": 286.0,
+      "vram_used_ratio": 0.955,
+      "gpu_temp_c": 48.0,
+      "gpu_utilization_percent": 32.0,
+      "ram_total_mb": 32509.4,
+      "ram_used_mb": 18667.4,
+      "ram_free_mb": 13842.0,
+      "ram_percent": 57.4,
+      "cpu_percent": 0.0,
+      "cpu_cores": 24,
+      "timestamp": "2026-10-25 22:21:07"
+    }
+  },
+  "spec_patches": [
+    {
+      "section": "9. Riesgos y Resiliencia",
+      "action": "ADD",
+      "target_item": "Mitigación de OOM y Presupuesto de Memoria",
+      "proposed_text": "### Requisito de Resiliencia Hardware\n- Límite de consumo VRAM por invocación: máximo 80% de capacidad disponible.\n- En caso de saturación, invocar `core.vram_manager.liberar_vram()` antes de fallback a CPU.\n- Pruebas de estrés deben verificar liberación limpia de recursos tras finalización.",
+      "rationale": "El sprint falló por agotamiento de recursos físicos (VRAM/RAM)."
+    }
+  ],
+  "lessons_learned": [
+    "[HARDWARE_CHOKING] Saturación física de hardware detectada durante el sprint: VRAM de GPU 'NVIDIA GeForce RTX 4070' al 95.5% (Usados: 11725/12282 MB). Riesgo inminente de OOM.",
+    "Patrón a evitar: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y ref",
+    "Acción preventiva: Se generaron 1 parches sugeridos a la SPEC para blindar futuras iteraciones."
+  ],
+  "hardware_directive": {
+    "action": "PURGE_VRAM",
+    "level": "CRITICAL",
+    "reason": "VRAM de GPU 'NVIDIA GeForce RTX 4070' al 95.5% (Usados: 11725/12282 MB). Riesgo inminente de OOM.",
+    "metrics_snapshot": {
+      "gpu_name": "NVIDIA GeForce RTX 4070",
+      "gpu_vram_total_mb": 12282.0,
+      "gpu_vram_used_mb": 11725.0,
+      "gpu_vram_free_mb": 286.0,
+      "vram_used_ratio": 0.955,
+      "gpu_temp_c": 48.0,
+      "gpu_utilization_percent": 32.0,
+      "ram_total_mb": 32509.4,
+      "ram_used_mb": 18667.4,
+      "ram_free_mb": 13842.0,
+      "ram_percent": 57.4,
+      "cpu_percent": 0.0,
+      "cpu_cores": 24,
+      "timestamp": "2026-10-25 22:21:07"
+    }
+  },
+  "saved_paths": {}
+}
