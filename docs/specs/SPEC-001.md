@@ -5,8 +5,8 @@ version: "1.0.0"
 status: "APPROVED"
 sprint_id: "sprint_01"
 created_at: "2026-10-23 21:40:00"
-updated_at: "2026-10-25 18:46:54"
-approved_by: "SDD-AutoGate"
+updated_at: "2026-10-25 20:44:51"
+approved_by: "SDD-Architect"
 ---
 # SPEC-001 — Arkanoid Python Niveles: Setup de Entorno y Estructura Base
 
@@ -14,7 +14,7 @@ approved_by: "SDD-AutoGate"
 Inicio del desarrollo del videojuego 'Arkanoid Python Niveles' con generación procedural, vidas, puntuación, power-ups y HUD retro neón. Este Sprint 1 establece la estructura base del repositorio, dependencias y punto de entrada modular.
 
 ## 2. Goal
-Configurar el entorno de ejecución, dependencias (`requirements.txt` con `pygame`, `numpy`, `pytest`), módulos base en `src/` (`config.py`, `main.py`) y una suite de pruebas unitarias verificables en `tests/` (`test_basic.py`) que valide la inicialización limpia.
+Configurar el entorno de ejecución, dependencias (`requirements.txt` con `pygame`, `numpy`, `pytest`), módulos base en `src/` (`config.py`, `main.py`) y una suite de pruebas unitarias verificables en `tests/` (`test_basic.py`) que valide la inicialización limpia y compatible con cualquier driver de video (incluido `dummy` en pruebas automatizadas).
 
 ## 3. Users
 Desarrolladores y jugadores del proyecto Arkanoid.
@@ -23,11 +23,11 @@ Desarrolladores y jugadores del proyecto Arkanoid.
 ### In scope
 - Archivo de dependencias `requirements.txt` con `pygame>=2.5.0`, `numpy>=1.24.0`, `pytest>=7.0.0`.
 - Módulo `src/__init__.py` y `src/config.py` con constantes de resolución (800x600), colores retro neón (NEON_CYAN, NEON_PINK, etc.) y FPS (60).
-- Punto de entrada `src/main.py` con la función `init_game()` y bucle de juego seguro compatible con modo headless.
+- Punto de entrada `src/main.py` con la función `init_game() -> dict` que inicializa pygame de forma transparente y compatible con cualquier driver de video (`SDL_VIDEODRIVER`), configurando la resolución y retornando `{"status": "initialized", "screen_size": (800, 600)}`.
 - Suite de tests `tests/__init__.py` y `tests/test_basic.py` que verifique la configuración y la inicialización de Pygame con código de salida 0.
 
 ### Out of scope
-- Lógica de paddle, pelotas y colisiones complejas (reservado para Sprint 2 y 3).
+- Lógica de paddle, pelotas y colisiones complejas (Sprint 2 y 3).
 - Generación de niveles procedurales y power-ups (Sprints 4 y 5).
 
 ## 5. Requirements
@@ -36,7 +36,7 @@ Desarrolladores y jugadores del proyecto Arkanoid.
 - Implementar `src/config.py` con `SCREEN_WIDTH = 800`, `SCREEN_HEIGHT = 600`, `FPS = 60`, y la paleta de colores RGB `COLOR_BG = (10, 10, 25)`, `COLOR_NEON_CYAN = (0, 255, 240)`, `COLOR_NEON_PINK = (255, 0, 128)`.
 
 ### R2: Módulo Principal y Punto de Entrada
-- Implementar `src/main.py` conteniendo la función `init_game() -> dict` que inicializa pygame de forma segura (respetando variables de entorno como `SDL_VIDEODRIVER`), configura la resolución y retorna el estado inicial `{"status": "initialized", "screen_size": (800, 600)}`.
+- Implementar `src/main.py` conteniendo la función `init_game() -> dict`. Debe llamar a `pygame.init()`, configurar `pygame.display.set_mode((800, 600))` de forma universal sin restringir nombres de driver, y retornar `{"status": "initialized", "screen_size": (800, 600)}`.
 
 ### R3: Suite de Pruebas Unitarias Verificables
 - Implementar `tests/test_basic.py` conteniendo pruebas unitarias que validen:
@@ -45,7 +45,7 @@ Desarrolladores y jugadores del proyecto Arkanoid.
 
 ## 6. Business Rules
 - La pantalla debe ser determinista (800x600, 60 FPS).
-- La inicialización de Pygame debe ejecutarse limpiamente tanto con pantalla física como en modo headless (`SDL_VIDEODRIVER=dummy`).
+- La inicialización de Pygame debe admitir tanto pantalla física como modo headless (`SDL_VIDEODRIVER=dummy`) sin lanzar excepciones artificiales por el tipo de driver.
 
 ## 7. User Flow
 1. El usuario o sistema ejecuta `python src/main.py` o corre `pytest tests/`.
