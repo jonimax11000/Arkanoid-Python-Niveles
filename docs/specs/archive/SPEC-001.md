@@ -2,11 +2,12 @@
 id: "SPEC-001"
 title: "Arkanoid Python Niveles - Sprint 1: Setup de Entorno y Estructura Base"
 version: "1.0.0"
-status: "APPROVED"
+status: "ARCHIVED"
 sprint_id: "sprint_01"
 created_at: "2026-10-23 21:40:00"
-updated_at: "2026-10-25 22:30:18"
+updated_at: "2026-10-25 22:32:29"
 approved_by: "SDD-Architect"
+archived_at: "2026-10-25 22:32:29"
 ---
 # SPEC-001 — Arkanoid Python Niveles: Setup de Entorno y Estructura Base
 
