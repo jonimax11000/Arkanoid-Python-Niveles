@@ -1,18 +1,18 @@
 {
-  "status": "BLOCKED_HITL",
+  "status": "SUCCESS",
   "spec_id": "SPEC-001",
   "project_root": "L:\\arkanoid-python-niveles",
-  "reason": "Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+  "reason": "Sprint consolidado en main tras QA PASS.",
   "base_branch": "main",
-  "qa_verdict": "FAIL",
-  "consolidated_branch": null,
-  "consolidated_commit": null,
-  "archived_spec": null,
-  "total_subphases": 4,
+  "qa_verdict": "PASS",
+  "consolidated_branch": "sprint/SPEC-001-attempt-1-run9",
+  "consolidated_commit": "d6e777b2d3b13d42110cec54f01678b1ca0ed2d6",
+  "archived_spec": "L:\\arkanoid-python-niveles\\docs\\specs\\archive\\SPEC-001.md",
+  "total_subphases": 3,
   "attempts": [
     {
       "attempt": 1,
-      "branch": "sprint/SPEC-001-attempt-1-run8",
+      "branch": "sprint/SPEC-001-attempt-1-run9",
       "subphases": [
         {
           "subphase_id": "SP-01",
@@ -21,10 +21,8 @@
             "requirements.txt",
             "src/config.py"
           ],
-          "summary": "requirements.txt con dependencias especificadas y src/config.py con constantes de configuración y colores definidas",
-          "decisions": [
-            "Uso de mayúsculas para constantes según convención PEP8"
-          ],
+          "summary": "Implementación de requirements.txt con dependencias especificadas e implementación de src/config.py con constantes de configuración y paleta de colores.",
+          "decisions": [],
           "questions": [],
           "errors": [],
           "llm_calls": 1
@@ -35,9 +33,9 @@
           "files_modified": [
             "src/main.py"
           ],
-          "summary": "Implementación de init_game() en src/main.py que inicializa pygame, configura la pantalla a 800x600 y retorna el estado esperado",
+          "summary": "Implementado init_game() que inicializa pygame, configura la pantalla a 800x600 y retorna el diccionario especificado.",
           "decisions": [
-            "Uso de pygame.display.set_mode() sin especificar drivers ni flags según el contrato"
+            "No se almacena la referencia a la pantalla ya que no es requerido por la SPEC"
           ],
           "questions": [],
           "errors": [],
@@ -49,198 +47,23 @@
           "files_modified": [
             "tests/test_basic.py"
           ],
-          "summary": "Implementado tests/test_basic.py con pruebas unitarias para validar constantes de src/config.py y la función init_game() de src/main.py.",
+          "summary": "Implementado tests/unitarios en tests/test_basic.py que validan: 1. Tipos y valores de constantes en src/config.py 2. Comportamiento de init_game() en src/main.py",
           "decisions": [
-            "Uso de asserts directos para validación de constantes por claridad",
-            "Verificación de retorno de init_game() mediante aserción de valores esperados"
-          ],
-          "questions": [],
-          "errors": [],
-          "llm_calls": 1
-        },
-        {
-          "subphase_id": "SP-04",
-          "status": "SUCCESS",
-          "files_modified": [
-            "src/main.py",
-            "src/domain/logic.py",
-            "tests/test_integration.py"
-          ],
-          "summary": "Implementación de inicialización del entorno y lógica de dominio con validación de límites. Se crearon archivos de entrada principal, lógica de dominio y pruebas de integración.",
-          "decisions": [
-            "Uso de un archivo de configuración centralizado para valores de configuración",
-            "Implementación de validaciones en la lógica de dominio antes de la ejecución",
-            "Uso de fixtures de pytest para configuración de pruebas"
-          ],
-          "questions": [
-            "¿Se requiere manejo adicional de excepciones durante la inicialización?",
-            "¿Qué comportamiento se espera cuando se superan múltiples límites simultáneamente?"
-          ],
-          "errors": [],
-          "llm_calls": 1
-        }
-      ],
-      "outcome": "FAIL",
-      "qa_verdict": "FAIL",
-      "rollback": {
-        "rama_preservada": "sprint/SPEC-001-attempt-1-run8",
-        "rama_actual": "main",
-        "snapshot_creado": false,
-        "limpieza_forzada": false
-      }
-    },
-    {
-      "attempt": 2,
-      "branch": "sprint/SPEC-001-attempt-2-run8",
-      "subphases": [
-        {
-          "subphase_id": "SP-01",
-          "status": "SUCCESS",
-          "files_modified": [
-            "requirements.txt",
-            "src/config.py"
-          ],
-          "summary": "Implementación de requirements.txt con dependencias especificadas y creación de src/config.py con constantes de configuración y paleta de colores.",
-          "decisions": [
-            "Uso de imports absolutos en tests/ según especificación"
-          ],
-          "questions": [
-            "Los errores en tests/test_basic.py y tests/test_integration.py persisten, ¿son causados por la implementación actual o por configuraciones externas?"
-          ],
-          "errors": [],
-          "llm_calls": 1
-        },
-        {
-          "subphase_id": "SP-02",
-          "status": "SUCCESS",
-          "files_modified": [
-            "src/main.py"
-          ],
-          "summary": "Implementado init_game() que inicializa pygame, configura la pantalla de 800x600 y retorna el diccionario especificado.",
-          "decisions": [
-            "Uso de importaciones absolutas en tests/ según las reglas de formato"
-          ],
-          "questions": [
-            "Los errores en tests/test_basic.py y tests/test_integration.py podrían deberse a configuraciones de tests no relacionadas con la implementación actual, pero se requiere revisión adicional para confirmar si la implementación cumple con los requisitos de tests unitarios"
-          ],
-          "errors": [],
-          "llm_calls": 1
-        },
-        {
-          "subphase_id": "SP-03",
-          "status": "SUCCESS",
-          "files_modified": [
-            "tests/test_basic.py"
-          ],
-          "summary": "Implementado tests unitarios para validar constantes en src/config.py y la función init_game() en src/main.py. Se verifican tipos, valores y estructura de retorno.",
-          "decisions": [
-            "Uso de assert estándar de pytest para validaciones",
-            "Inclusión de verificación de estructura de retorno en init_game()"
-          ],
-          "questions": [],
-          "errors": [],
-          "llm_calls": 1
-        },
-        {
-          "subphase_id": "SP-04",
-          "status": "SUCCESS",
-          "files_modified": [
-            "tests/test_basic.py"
-          ],
-          "summary": "Corregido los errores de importación en los archivos de prueba y asegurado que las pruebas están correctamente estructuradas con imports absolutos desde src.",
-          "decisions": [
-            "Uso de imports absolutos desde src en archivos de prueba para evitar errores de colección"
+            "Uso de pytest para validaciones estándar",
+            "Verificación explícita de estructura de datos en lugar de asumir comportamientos"
           ],
           "questions": [],
           "errors": [],
           "llm_calls": 1
         }
       ],
-      "outcome": "FAIL",
-      "qa_verdict": "FAIL",
-      "rollback": {
-        "rama_preservada": "sprint/SPEC-001-attempt-2-run8",
-        "rama_actual": "main",
-        "snapshot_creado": false,
-        "limpieza_forzada": false
-      }
+      "outcome": "PASS",
+      "qa_verdict": "PASS",
+      "rollback": null
     }
   ],
-  "preserved_branches": [
-    "sprint/SPEC-001-attempt-1-run8",
-    "sprint/SPEC-001-attempt-2-run8"
-  ],
-  "timestamp": "2026-10-25 22:21:07",
-  "post_mortem_report": {
-    "spec_id": "SPEC-001",
-    "timestamp": "2026-10-25 22:21:07",
-    "project_root": "L:\\arkanoid-python-niveles",
-    "primary_root_cause": "HARDWARE_CHOKING",
-    "confidence": 0.95,
-    "summary": "Saturación física de hardware detectada durante el sprint: VRAM de GPU 'NVIDIA GeForce RTX 4070' al 95.5% (Usados: 11725/12282 MB). Riesgo inminente de OOM.",
-    "incident_details": [
-      "Motivo reportado por el Sprint: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
-      "Errores reportados en DEV: Duda: ¿Se requiere manejo adicional de excepciones durante la inicialización?; Duda: ¿Qué comportamiento se espera cuando se superan múltiples límites simultáneamente?; Duda: Los errores en tests/test_basic.py y tests/test_integration.py persisten, ¿son causados por la implementación actual o por configuraciones externas?"
-    ],
-    "forensic_evidence": {
-      "pruned_traceback": "",
-      "pruned_diff": "",
-      "hardware_snapshot": {
-        "gpu_name": "NVIDIA GeForce RTX 4070",
-        "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 11725.0,
-        "gpu_vram_free_mb": 286.0,
-        "vram_used_ratio": 0.955,
-        "gpu_temp_c": 48.0,
-        "gpu_utilization_percent": 32.0,
-        "ram_total_mb": 32509.4,
-        "ram_used_mb": 18667.4,
-        "ram_free_mb": 13842.0,
-        "ram_percent": 57.4,
-        "cpu_percent": 0.0,
-        "cpu_cores": 24,
-        "timestamp": "2026-10-25 22:21:07"
-      }
-    },
-    "spec_patches": [
-      {
-        "section": "9. Riesgos y Resiliencia",
-        "action": "ADD",
-        "target_item": "Mitigación de OOM y Presupuesto de Memoria",
-        "proposed_text": "### Requisito de Resiliencia Hardware\n- Límite de consumo VRAM por invocación: máximo 80% de capacidad disponible.\n- En caso de saturación, invocar `core.vram_manager.liberar_vram()` antes de fallback a CPU.\n- Pruebas de estrés deben verificar liberación limpia de recursos tras finalización.",
-        "rationale": "El sprint falló por agotamiento de recursos físicos (VRAM/RAM)."
-      }
-    ],
-    "lessons_learned": [
-      "[HARDWARE_CHOKING] Saturación física de hardware detectada durante el sprint: VRAM de GPU 'NVIDIA GeForce RTX 4070' al 95.5% (Usados: 11725/12282 MB). Riesgo inminente de OOM.",
-      "Patrón a evitar: Se agotaron los 2 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y ref",
-      "Acción preventiva: Se generaron 1 parches sugeridos a la SPEC para blindar futuras iteraciones."
-    ],
-    "hardware_directive": {
-      "action": "PURGE_VRAM",
-      "level": "CRITICAL",
-      "reason": "VRAM de GPU 'NVIDIA GeForce RTX 4070' al 95.5% (Usados: 11725/12282 MB). Riesgo inminente de OOM.",
-      "metrics_snapshot": {
-        "gpu_name": "NVIDIA GeForce RTX 4070",
-        "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 11725.0,
-        "gpu_vram_free_mb": 286.0,
-        "vram_used_ratio": 0.955,
-        "gpu_temp_c": 48.0,
-        "gpu_utilization_percent": 32.0,
-        "ram_total_mb": 32509.4,
-        "ram_used_mb": 18667.4,
-        "ram_free_mb": 13842.0,
-        "ram_percent": 57.4,
-        "cpu_percent": 0.0,
-        "cpu_cores": 24,
-        "timestamp": "2026-10-25 22:21:07"
-      }
-    },
-    "saved_paths": {
-      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261025_222107.json",
-      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-001_20261025_222107.md"
-    }
-  },
-  "success": false
+  "preserved_branches": [],
+  "timestamp": "2026-10-25 22:32:29",
+  "post_mortem_report": null,
+  "success": true
 }
