@@ -2,9 +2,9 @@
   "status": "BLOCKED_HITL",
   "spec_id": "SPEC-003",
   "project_root": "L:\\arkanoid-python-niveles",
-  "reason": "DEV bloqueado por dudas sin resolver: SP-04 BLOCKED: ¿Cómo resolver la ambigüedad en la firma de los métodos check_collision? El método no puede tener el mismo nombre con parámetros diferentes en Python.",
+  "reason": "Se agotaron los 3 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
   "base_branch": "main",
-  "qa_verdict": null,
+  "qa_verdict": "FAIL",
   "consolidated_branch": null,
   "consolidated_commit": null,
   "archived_spec": null,
@@ -12,21 +12,21 @@
   "attempts": [
     {
       "attempt": 1,
-      "branch": "sprint/SPEC-003-attempt-1-run2",
+      "branch": "sprint/SPEC-003-attempt-1-run3",
       "subphases": [
         {
           "subphase_id": "SP-01",
           "status": "SUCCESS",
           "files_modified": [
-            "src/player_controller.py"
+            "src/game/controller.py"
           ],
-          "summary": "Se ha corregido el error de importación de pygame en el archivo src/player_controller.py. Se ha añadido la importación necesaria y se han validado las referencias a funciones de pygame en los métodos update() y draw(). El código ahora cumple con los requisitos de la especificación y está preparado para ser integrado en el sistema.",
+          "summary": "Se implementó la clase PaddleController con los métodos update() y draw(). El método update() es un placeholder y debe ser implementado con la lógica para actualizar la posición del paddle según la entrada del usuario. El método draw() dibuja el paddle en la pantalla.",
           "decisions": [
-            "Se ha incluido la importación explícita de pygame para resolver el error de símbolos no definidos.",
-            "Se han validado las referencias a funciones de pygame en los métodos update() y draw().",
-            "Se ha asegurado que el código cumple con los requisitos de la especificación y está listo para ser integrado en el sistema."
+            "Se utilizó la clase Screen para representar la pantalla y la función draw_rectangle para dibujar el paddle"
           ],
-          "questions": [],
+          "questions": [
+            "¿Cómo se manejará la entrada del usuario para actualizar la posición del paddle?"
+          ],
           "errors": [],
           "llm_calls": 2
         },
@@ -34,11 +34,105 @@
           "subphase_id": "SP-02",
           "status": "SUCCESS",
           "files_modified": [
-            "src/ball.py"
+            "src/game/ball.py"
           ],
-          "summary": "Implementación de la clase Ball con métodos update(), draw(screen) y bounce(direction) según la SPEC. La bola se mueve con velocidad constante y cambia de dirección al colisionar.",
+          "summary": "Se implementó la clase Ball con los métodos update, draw y bounce. El método update actualiza la posición de la bola según su velocidad, draw dibuja la bola en la pantalla y bounce cambia la dirección de la bola al colisionar.",
           "decisions": [
-            "Uso de pygame.draw.circle para representar la bola como un círculo"
+            "Se utilizó la función draw_circle del módulo utils para dibujar la bola"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-03",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game/brick.py"
+          ],
+          "summary": "Se implementó la clase Brick con los métodos draw y is_destroyed. El método hit se agregó para marcar el brick como destruido.",
+          "decisions": [
+            "Se utilizó pygame para dibujar el brick en la pantalla"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-04",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game/collision.py"
+          ],
+          "summary": "Se han creado dos métodos en la clase CollisionHandler: check_collision para la bola y el paddle, y check_collision para la bola y los bricks. Estos métodos están vacíos y deben ser implementados con la lógica de colisión correspondiente.",
+          "decisions": [
+            "Se ha decidido implementar la lógica de colisión en una clase separada llamada CollisionHandler para mantener el código organizado y modular."
+          ],
+          "questions": [
+            "¿Cómo se debe implementar la lógica de colisión entre la bola y el paddle y entre la bola y los bricks?"
+          ],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-05",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_paddle.py",
+            "tests/test_ball.py",
+            "tests/test_brick.py"
+          ],
+          "summary": "Se implementaron pruebas unitarias para las clases Paddle, Ball y Brick, incluyendo pruebas para el movimiento y las colisiones.",
+          "decisions": [
+            "Se utilizaron pruebas unitarias con pytest para validar el comportamiento de las clases"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 3
+        }
+      ],
+      "outcome": "FAIL",
+      "qa_verdict": "FAIL",
+      "rollback": {
+        "rama_preservada": "sprint/SPEC-003-attempt-1-run3",
+        "rama_actual": "main",
+        "snapshot_creado": false,
+        "limpieza_forzada": false
+      }
+    },
+    {
+      "attempt": 2,
+      "branch": "sprint/SPEC-003-attempt-2-run2",
+      "subphases": [
+        {
+          "subphase_id": "SP-01",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/controller/paddle.py"
+          ],
+          "summary": "Se implementó la clase Paddle con los métodos update() y draw(). El método update() es un placeholder y debe ser implementado con la lógica para actualizar la posición del paddle según la entrada del usuario. El método draw() utiliza una función draw_rectangle para dibujar el paddle en la pantalla.",
+          "decisions": [
+            "Se utilizó una clase Paddle para representar el controlador del jugador.",
+            "Se implementaron los métodos update() y draw() según la especificación.",
+            "Se utilizó una función draw_rectangle para dibujar el paddle en la pantalla."
+          ],
+          "questions": [
+            "¿Cómo se debe implementar la lógica para actualizar la posición del paddle según la entrada del usuario en el método update()?",
+            "¿Se requiere alguna otra funcionalidad o método adicional para el controlador del jugador?",
+            "¿Se deben realizar cambios en los tests para que pasen con la nueva implementación del controlador del jugador?"
+          ],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-02",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game/ball.py"
+          ],
+          "summary": "Se implementó la clase Ball con los métodos update, draw y bounce. El método update actualiza la posición de la bola según su velocidad. El método draw dibuja la bola en la pantalla. El método bounce cambia la dirección de la bola al colisionar.",
+          "decisions": [
+            "Se utilizó la función draw_circle del módulo utils para dibujar la bola"
           ],
           "questions": [],
           "errors": [],
@@ -50,32 +144,145 @@
           "files_modified": [
             "src/brick.py"
           ],
-          "summary": "Se ha corregido el error de importación de pygame en el archivo src/brick.py. Ahora se incluye la importación necesaria para que los símbolos de pygame estén definidos y disponibles en el módulo.",
+          "summary": "Implementado la clase Brick con los métodos draw y is_destroyed. Se añade un método hit para destruir el brick.",
           "decisions": [
-            "Se ha añadido la importación de pygame al inicio del archivo src/brick.py para resolver el error de símbolos no definidos.",
-            "Se ha mantenido la implementación original de la clase Brick con sus métodos draw y is_destroyed según los requisitos de la subfase SP-03."
+            "Se implementa la destrucción del brick mediante un método hit"
           ],
           "questions": [],
           "errors": [],
-          "llm_calls": 3
+          "llm_calls": 1
         },
         {
           "subphase_id": "SP-04",
-          "status": "BLOCKED",
-          "files_modified": [],
-          "summary": "No se pudo implementar la subfase debido a una ambigüedad en la firma de los métodos check_collision. En Python, no es posible tener dos métodos con el mismo nombre pero parámetros diferentes.",
-          "decisions": [],
-          "questions": [
-            "¿Cómo resolver la ambigüedad en la firma de los métodos check_collision? El método no puede tener el mismo nombre con parámetros diferentes en Python."
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game/collision.py"
           ],
+          "summary": "Se han creado dos funciones, `check_collision(ball, paddle)` y `check_collision(ball, brick)`, para manejar las interacciones entre la bola, el paddle y los bricks. Estas funciones están vacías por ahora y se espera que se implementen las lógicas de colisión correspondientes.",
+          "decisions": [
+            "Se ha decidido implementar las funciones de colisión en un archivo separado `collision.py` dentro del directorio `src/game/`"
+          ],
+          "questions": [
+            "¿Qué lógica específica se debe implementar para detectar las colisiones entre la bola y el paddle y entre la bola y los bricks?"
+          ],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-05",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_ball.py",
+            "tests/test_brick.py",
+            "tests/test_paddle.py"
+          ],
+          "summary": "Se implementaron pruebas unitarias para las clases Ball, Brick y Paddle, incluyendo pruebas para el movimiento y el estado de los objetos.",
+          "decisions": [
+            "Se utilizaron pruebas unitarias con pytest para validar el comportamiento de las clases y métodos implementados"
+          ],
+          "questions": [],
           "errors": [],
           "llm_calls": 1
         }
       ],
-      "outcome": "DEV_BLOCKED",
-      "qa_verdict": null,
+      "outcome": "FAIL",
+      "qa_verdict": "FAIL",
       "rollback": {
-        "rama_preservada": "sprint/SPEC-003-attempt-1-run2",
+        "rama_preservada": "sprint/SPEC-003-attempt-2-run2",
+        "rama_actual": "main",
+        "snapshot_creado": false,
+        "limpieza_forzada": false
+      }
+    },
+    {
+      "attempt": 3,
+      "branch": "sprint/SPEC-003-attempt-3",
+      "subphases": [
+        {
+          "subphase_id": "SP-01",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/controller/paddle.py"
+          ],
+          "summary": "Se implementó la clase Paddle con los métodos update() y draw(). El método update() es un placeholder y debe ser implementado con la lógica para actualizar la posición del paddle según la entrada del usuario. El método draw() utiliza la función draw_rectangle para dibujar el paddle en la pantalla.",
+          "decisions": [
+            "Se utilizó la función draw_rectangle del módulo utils para dibujar el paddle"
+          ],
+          "questions": [
+            "¿Cómo se debe implementar la lógica para actualizar la posición del paddle según la entrada del usuario en el método update()?"
+          ],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-02",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game/ball.py"
+          ],
+          "summary": "Implementación de la clase Ball con los métodos update, draw y bounce. La bola se mueve con velocidad constante y cambia de dirección al colisionar.",
+          "decisions": [
+            "Se utiliza una velocidad constante para la bola.",
+            "Se utiliza una función draw_circle para dibujar la bola.",
+            "Se implementa la lógica de rebote para la bola en los ejes horizontal y vertical."
+          ],
+          "questions": [
+            "¿Es necesario implementar la detección de colisión con el paddle, los bricks y los bordes de la pantalla en esta subfase?"
+          ],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-03",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/brick.py"
+          ],
+          "summary": "Implementado la clase Brick con los métodos draw y is_destroyed. Se añade un método hit para destruir el brick.",
+          "decisions": [
+            "Se implementa el método hit para destruir el brick"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-04",
+          "status": "SUCCESS",
+          "files_modified": [
+            "src/game/collision.py"
+          ],
+          "summary": "Se han creado dos funciones, `check_collision(ball, paddle)` y `check_collision(ball, brick)`, para manejar las interacciones entre la bola, el paddle y los bricks. Estas funciones están vacías y deben ser implementadas con la lógica de colisión correspondiente.",
+          "decisions": [
+            "Se ha decidido implementar las funciones de colisión en un archivo separado llamado `collision.py` dentro del directorio `src/game/`. Se han importado las clases `Ball`, `Paddle` y `Brick` desde su respectivo módulo para usarlas en las funciones de colisión."
+          ],
+          "questions": [
+            "¿Qué lógica específica se debe implementar en las funciones `check_collision` para manejar las colisiones entre la bola y el paddle y los bricks?"
+          ],
+          "errors": [],
+          "llm_calls": 1
+        },
+        {
+          "subphase_id": "SP-05",
+          "status": "SUCCESS",
+          "files_modified": [
+            "tests/test_ball.py",
+            "tests/test_brick.py",
+            "tests/test_paddle.py"
+          ],
+          "summary": "Se implementaron pruebas unitarias para las clases Ball, Paddle y Brick, incluyendo pruebas de movimiento y colisión.",
+          "decisions": [
+            "Se utilizaron pruebas unitarias con pytest para validar el comportamiento de las clases y métodos implementados"
+          ],
+          "questions": [],
+          "errors": [],
+          "llm_calls": 2
+        }
+      ],
+      "outcome": "FAIL",
+      "qa_verdict": "FAIL",
+      "rollback": {
+        "rama_preservada": "sprint/SPEC-003-attempt-3",
         "rama_actual": "main",
         "snapshot_creado": false,
         "limpieza_forzada": false
@@ -83,19 +290,21 @@
     }
   ],
   "preserved_branches": [
-    "sprint/SPEC-003-attempt-1-run2"
+    "sprint/SPEC-003-attempt-1-run3",
+    "sprint/SPEC-003-attempt-2-run2",
+    "sprint/SPEC-003-attempt-3"
   ],
-  "timestamp": "2026-10-26 11:13:49",
+  "timestamp": "2026-10-26 13:23:24",
   "post_mortem_report": {
     "spec_id": "SPEC-003",
-    "timestamp": "2026-10-26 11:13:49",
+    "timestamp": "2026-10-26 13:23:24",
     "project_root": "L:\\arkanoid-python-niveles",
-    "primary_root_cause": "HARDWARE_CHOKING",
-    "confidence": 0.95,
-    "summary": "Saturación física de hardware detectada durante el sprint: VRAM de GPU 'NVIDIA GeForce RTX 4070' al 93.2% (Usados: 11441/12282 MB). Riesgo inminente de OOM.",
+    "primary_root_cause": "SPEC_DESIGN_DEFECT",
+    "confidence": 0.88,
+    "summary": "Discrepancia funcional entre la implementación y los requisitos de la SPEC; el diseño omite o contradice el comportamiento esperado.",
     "incident_details": [
-      "Motivo reportado por el Sprint: DEV bloqueado por dudas sin resolver: SP-04 BLOCKED: ¿Cómo resolver la ambigüedad en la firma de los métodos check_collision? El método no puede tener el mismo nombre con parámetros diferentes en Python.",
-      "Errores reportados en DEV: Duda: ¿Cómo resolver la ambigüedad en la firma de los métodos check_collision? El método no puede tener el mismo nombre con parámetros diferentes en Python."
+      "Motivo reportado por el Sprint: Se agotaron los 3 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+      "Errores reportados en DEV: Duda: ¿Cómo se manejará la entrada del usuario para actualizar la posición del paddle?; Duda: ¿Cómo se debe implementar la lógica de colisión entre la bola y el paddle y entre la bola y los bricks?; Duda: ¿Cómo se debe implementar la lógica para actualizar la posición del paddle según la entrada del usuario en el método update()?"
     ],
     "forensic_evidence": {
       "pruned_traceback": "",
@@ -103,58 +312,65 @@
       "hardware_snapshot": {
         "gpu_name": "NVIDIA GeForce RTX 4070",
         "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 11441.0,
-        "gpu_vram_free_mb": 570.0,
-        "vram_used_ratio": 0.932,
+        "gpu_vram_used_mb": 7412.0,
+        "gpu_vram_free_mb": 4599.0,
+        "vram_used_ratio": 0.603,
         "gpu_temp_c": null,
-        "gpu_utilization_percent": 1.0,
+        "gpu_utilization_percent": 4.0,
         "ram_total_mb": 32509.4,
-        "ram_used_mb": 16025.2,
-        "ram_free_mb": 16484.2,
-        "ram_percent": 49.3,
+        "ram_used_mb": 16296.0,
+        "ram_free_mb": 16213.4,
+        "ram_percent": 50.1,
         "cpu_percent": 0.0,
         "cpu_cores": 24,
-        "timestamp": "2026-10-26 11:13:49"
+        "timestamp": "2026-10-26 13:23:24"
       }
     },
     "spec_patches": [
       {
-        "section": "9. Riesgos y Resiliencia",
-        "action": "ADD",
-        "target_item": "Mitigación de OOM y Presupuesto de Memoria",
-        "proposed_text": "### Requisito de Resiliencia Hardware\n- Límite de consumo VRAM por invocación: máximo 80% de capacidad disponible.\n- En caso de saturación, invocar `core.vram_manager.liberar_vram()` antes de fallback a CPU.\n- Pruebas de estrés deben verificar liberación limpia de recursos tras finalización.",
-        "rationale": "El sprint falló por agotamiento de recursos físicos (VRAM/RAM)."
+        "section": "5. Requisitos Funcionales",
+        "action": "MODIFY",
+        "target_item": "Corrección de Lógica de Negocio",
+        "proposed_text": "### Enmienda de Requisito Funcional\n- Modificar la lógica para satisfacer la expectativa de QA: Se agotaron los 3 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.\n- Asegurar consistencia entre las entradas de prueba y las salidas esperadas.",
+        "rationale": "Discrepancia funcional detectada durante la verificación de QA."
+      },
+      {
+        "section": "8. Criterios de Aceptación",
+        "action": "MODIFY",
+        "target_item": "Alineación de Criterio de Verificación",
+        "proposed_text": "- El veredicto de QA debe requerir paso al 100% de las aserciones de negocio.\n- Validar específicamente el caso reportado: Se agotaron los 3 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y refina el Spec o decide cómo continuar.",
+        "rationale": "Alinear el criterio de aceptación con la solución del defecto de diseño."
       }
     ],
     "lessons_learned": [
-      "[HARDWARE_CHOKING] Saturación física de hardware detectada durante el sprint: VRAM de GPU 'NVIDIA GeForce RTX 4070' al 93.2% (Usados: 11441/12282 MB). Riesgo inminente de OOM.",
-      "Patrón a evitar: DEV bloqueado por dudas sin resolver: SP-04 BLOCKED: ¿Cómo resolver la ambigüedad en la firma de los métodos check_colli",
-      "Acción preventiva: Se generaron 1 parches sugeridos a la SPEC para blindar futuras iteraciones."
+      "[SPEC_DESIGN_DEFECT] Discrepancia funcional entre la implementación y los requisitos de la SPEC; el diseño omite o contradice el comportamiento esperado.",
+      "Patrón a evitar: Se agotaron los 3 intentos sin QA PASS (último resultado: FAIL). Revisa las ramas preservadas y el feedback de QA, y ref",
+      "Acción preventiva: Se generaron 2 parches sugeridos a la SPEC para blindar futuras iteraciones."
     ],
     "hardware_directive": {
-      "action": "PURGE_VRAM",
-      "level": "CRITICAL",
-      "reason": "VRAM de GPU 'NVIDIA GeForce RTX 4070' al 93.2% (Usados: 11441/12282 MB). Riesgo inminente de OOM.",
+      "action": "NONE",
+      "level": "INFO",
+      "reason": "Métricas de hardware dentro de rangos operativos normales.",
       "metrics_snapshot": {
         "gpu_name": "NVIDIA GeForce RTX 4070",
         "gpu_vram_total_mb": 12282.0,
-        "gpu_vram_used_mb": 11441.0,
-        "gpu_vram_free_mb": 570.0,
-        "vram_used_ratio": 0.932,
+        "gpu_vram_used_mb": 7412.0,
+        "gpu_vram_free_mb": 4599.0,
+        "vram_used_ratio": 0.603,
         "gpu_temp_c": null,
-        "gpu_utilization_percent": 1.0,
+        "gpu_utilization_percent": 4.0,
         "ram_total_mb": 32509.4,
-        "ram_used_mb": 16025.2,
-        "ram_free_mb": 16484.2,
-        "ram_percent": 49.3,
+        "ram_used_mb": 16296.0,
+        "ram_free_mb": 16213.4,
+        "ram_percent": 50.1,
         "cpu_percent": 0.0,
         "cpu_cores": 24,
-        "timestamp": "2026-10-26 11:13:49"
+        "timestamp": "2026-10-26 13:23:24"
       }
     },
     "saved_paths": {
-      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-003_20261026_111349.json",
-      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-003_20261026_111349.md"
+      "json": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-003_20261026_132324.json",
+      "markdown": "L:\\arkanoid-python-niveles\\docs\\post_mortem\\informe_sprint_SPEC-003_20261026_132324.md"
     }
   },
   "success": false
