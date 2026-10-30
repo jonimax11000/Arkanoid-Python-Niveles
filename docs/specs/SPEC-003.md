@@ -5,7 +5,7 @@ version: "1.0.0"
 status: "APPROVED"
 sprint_id: "T1792756894_2"
 created_at: "2026-10-26 10:25:22"
-updated_at: "2026-10-30 12:25:19"
+updated_at: "2026-10-30 17:51:29"
 approved_by: "SDD-Architect"
 ---
 # SPEC-003 — Sprint 3: Mecánica Básica del Juego  
