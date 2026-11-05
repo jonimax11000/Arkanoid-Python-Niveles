@@ -2,11 +2,12 @@
 id: "SPEC-003"
 title: "arkanoid-python-niveles — Sprint 3: Mecánica Básica del Juego"
 version: "1.0.0"
-status: "APPROVED"
+status: "ARCHIVED"
 sprint_id: "T1792756894_2"
 created_at: "2026-10-26 10:25:22"
-updated_at: "2026-11-05 16:35:09"
+updated_at: "2026-11-05 16:35:23"
 approved_by: "SelfImprovementAgent"
+archived_at: "2026-11-05 16:35:23"
 ---
 # SPEC-003 — Sprint 3: Mecánica Básica del Juego  
 
