@@ -5,8 +5,8 @@ version: "1.0.0"
 status: "APPROVED"
 sprint_id: "T1792756894_2"
 created_at: "2026-10-26 10:25:22"
-updated_at: "2026-11-05 16:30:11"
-approved_by: "SDD-Architect"
+updated_at: "2026-11-05 16:35:09"
+approved_by: "SelfImprovementAgent"
 ---
 # SPEC-003 — Sprint 3: Mecánica Básica del Juego  
 
@@ -159,3 +159,10 @@ Implementar las siguientes funcionalidades:
 2. ¿Cuál será el tamaño inicial del paddle y la bola?  
 3. ¿La velocidad de la bola será constante o aumentará con el tiempo?  
 4. ¿Se permitirá que los bricks tengan diferentes tipos (ej: resistentes, frágiles)?
+
+## 8. Criterios de Aceptación
+<!-- Automejora Post-Mortem #1 -->
+### Criterio de Verificación de Integridad de Código
+- Todo módulo generado debe compilar sin errores de sintaxis (`py_compile`).
+- Todas las dependencias importadas deben estar presentes en el entorno sin alucinaciones.
+- Cumplimiento estricto de las firmas de funciones especificadas en el diseño arquitectónico.
